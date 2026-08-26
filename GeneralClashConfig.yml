@@ -4,12 +4,10 @@ mode: rule                  # 规则分流模式
 log-level: info             # 日志级别
 ipv6: false                 # 视网络环境而定（若无特殊需求，关闭可避免双栈路由劣化）
 external-controller: 127.0.0.1:6170
-
 # 2. 性能与特征伪装
 unified-delay: true         # 统一真实延迟统计
 tcp-concurrent: true        # TCP 并发握手
 global-client-fingerprint: chrome # 伪装 Chrome TLS 指纹
-
 # 3. 静态映射与实验性特性
 hosts:
   mtalk.google.com: 108.177.125.188
@@ -19,7 +17,6 @@ experimental:
 url-rewrite:
   - ^https?:\/\/(www.)?(g|google)\.cn https://www.google.com 302
   - ^https?:\/\/(ditu|maps).google\.cn https://maps.google.com 302
-
 # 4. 域名嗅探优化
 sniffer:
   enable: true
@@ -40,7 +37,6 @@ sniffer:
     - "+.push.apple.com"
     - "+.apple.com"
     - "+.qq.com"
-
 # 5. DNS 高性能与防泄漏配置
 dns:
   enable: true
@@ -50,25 +46,20 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   use-hosts: true
-  
   # 用于解析 DoH 域名本身以及节点域名的基础 DNS（必须全部使用国内高速 IP）
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
-
   # 专门用于解析 机场节点服务器域名 的 DNS（保证连节点前不超时）
   proxy-server-nameserver:
     - 223.5.5.5
     - 119.29.29.29
-
   # 国内主要 DNS
   nameserver:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
-
   # 精确分流：国内域名强制走阿里/腾讯 DNS，国内服务秒开；其余国外域名由 Fake-IP/节点代理处理
   nameserver-policy:
     "geosite:cn,private":
       - https://dns.alidns.com/dns-query
       - https://doh.pub/dns-query
-
