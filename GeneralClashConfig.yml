@@ -1,50 +1,74 @@
-port: 7890
-socks-port: 7891
-allow-lan: true
-mode: rule
-log-level: info
+mixed-port: 7890            # 混合端口，同时支持 HTTP 和 SOCKS5
+allow-lan: true             # 允许局域网设备连接
+mode: rule                  # 规则分流模式
+log-level: info             # 日志级别
+ipv6: false                 # 视网络环境而定（若无特殊需求，关闭可避免双栈路由劣化）
 external-controller: 127.0.0.1:6170
-ipv6: true
-unified-delay: true
-tcp-concurrent: true
-global-client-fingerprint: chrome
+
+# 2. 性能与特征伪装
+unified-delay: true         # 统一真实延迟统计
+tcp-concurrent: true        # TCP 并发握手
+global-client-fingerprint: chrome # 伪装 Chrome TLS 指纹
+
+# 3. 静态映射与实验性特性
 hosts:
   mtalk.google.com: 108.177.125.188
 experimental:
   ignore-resolve-fail: true
-cfw-latency-url: https://connectivitycheck.gstatic.com/generate_204
-cfw-latency-type: 1
-cfw-latency-timeout: 5000
-cfw-conn-break-strategy: true
-clash-for-android:
-  append-system-dns: false
-  ui-subtitle-pattern: "[一-龥]{2,4}"
+
 url-rewrite:
   - ^https?:\/\/(www.)?(g|google)\.cn https://www.google.com 302
   - ^https?:\/\/(ditu|maps).google\.cn https://maps.google.com 302
+
+# 4. 域名嗅探优化
 sniffer:
   enable: true
-  sniff:
-    TLS: {ports: [1-65535], override-destination: true}
-    HTTP: {ports: [1-65535], override-destination: true}
-    QUIC: {ports: [1-65535], override-destination: true}
-  skip-domain:
-    - Mijia Cloud
-    - dlg.io.mi.com
-    - +.push.apple.com
   parse-pure-ip: false
   force-dns-mapping: true
   override-destination: true
+  sniff:
+    TLS:
+      ports: [443, 8443]
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"
+    - "dlg.io.mi.com"
+    - "+.push.apple.com"
+    - "+.apple.com"
+    - "+.qq.com"
+
+# 5. DNS 高性能与防泄漏配置
 dns:
-  ipv6: false
   enable: true
+  ipv6: false
   prefer-h3: true
   listen: 0.0.0.0:1053
   enhanced-mode: fake-ip
-  use-hosts: false
-  default-nameserver: [119.28.28.28, 119.29.29.29, 223.5.5.5, 223.6.6.6]
-  nameserver: [119.29.29.29, 223.5.5.5, tls://dot.pub:853, tls://dns.alidns.com:853, https://doh.pub:443/dns-query, https://dns.alidns.com:443/dns-query]
-  fallback: [https://dns.cloudflare.com/dns-query, https://doh.dns.sb/dns-query, tls://8.8.4.4:853]
-  fallback-filter: {geoip: true, ipcidr: [240.0.0.0/4, 0.0.0.0/32]}
-  fake-ip-range: 198.18.0.1/15
-  fake-ip-filter: ["*.lan", "*.localdomain", "*.example", "*.invalid", "*.localhost", "*.test", "*.local"]
+  fake-ip-range: 198.18.0.1/16
+  use-hosts: true
+  
+  # 用于解析 DoH 域名本身以及节点域名的基础 DNS（必须全部使用国内高速 IP）
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+
+  # 专门用于解析 机场节点服务器域名 的 DNS（保证连节点前不超时）
+  proxy-server-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+
+  # 国内主要 DNS
+  nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+
+  # 精确分流：国内域名强制走阿里/腾讯 DNS，国内服务秒开；其余国外域名由 Fake-IP/节点代理处理
+  nameserver-policy:
+    "geosite:cn,private":
+      - https://dns.alidns.com/dns-query
+      - https://doh.pub/dns-query
+
