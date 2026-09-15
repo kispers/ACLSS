@@ -3,51 +3,32 @@ allow-lan: true
 mode: rule
 log-level: info
 ipv6: false
-external-controller: 127.0.0.1:6170
+external-controller: '127.0.0.1:6170'
 unified-delay: true
 tcp-concurrent: true
-keep-alive-interval: 30  
 global-client-fingerprint: chrome
 hosts:
-  mtalk.google.com: 108.177.125.188
+    mtalk.google.com: 108.177.125.188
 experimental:
-  ignore-resolve-fail: true
+    ignore-resolve-fail: true
 url-rewrite:
-  - ^https?:\/\/(www.)?(g|google)\.cn https://www.google.com 302
-  - ^https?:\/\/(ditu|maps).google\.cn https://maps.google.com 302
+    - '^https?:\/\/(www.)?(g|google)\.cn <https://www.google.com> 302'
+    - '^https?:\/\/(ditu|maps).google\.cn <https://maps.google.com> 302'
 sniffer:
-  enable: true
-  parse-pure-ip: false
-  force-dns-mapping: true
-  override-destination: true
-  sniff:
-    TLS:
-      ports: [443, 8443]
-    HTTP:
-      ports: [80, 8080-8880]
-      override-destination: true
-    QUIC:
-      ports: [443, 8443]
-  skip-domain:
-    - Mijia Cloud
-    - dlg.io.mi.com
-    - +.push.apple.com
-    - +.apple.com
-    - +.qq.com
+    enable: true
+    parse-pure-ip: false
+    force-dns-mapping: true
+    override-destination: true
+    sniff: { TLS: { ports: [443, 8443] }, HTTP: { ports: [80, 8080-8880], override-destination: true }, QUIC: { ports: [443, 8443] } }
+    skip-domain: ['Mijia Cloud', dlg.io.mi.com, +.push.apple.com, +.apple.com, +.qq.com]
 dns:
-  enable: true
-  ipv6: false
-  prefer-h3: true
-  listen: 0.0.0.0:1053
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  use-hosts: false
-  default-nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
-  proxy-server-nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
-  nameserver:
-    - https://dns.alidns.com/dns-query
-    - https://doh.pub/dns-query
+    enable: true
+    ipv6: false
+    prefer-h3: true
+    listen: '0.0.0.0:1053'
+    enhanced-mode: fake-ip
+    fake-ip-range: 198.18.0.1/16
+    use-hosts: false
+    default-nameserver: [223.5.5.5, 119.29.29.29]
+    proxy-server-nameserver: [223.5.5.5, 119.29.29.29]
+    nameserver: ['https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query']
