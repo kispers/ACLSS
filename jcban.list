@@ -1,3 +1,127 @@
+# 机场 & VPN 常见公开域名规则列表 (DOMAIN-SUFFIX)
+# 说明：
+# 1. 适用于 Clash / Mihomo / Surge / Shadowrocket / Quantumult X 等规则集
+# 2. 机场域名变动频繁，以下均为公开可检索到的常用/历史/发布页域名，建议按需增删
+
+# === 示例 / 自定义补充 ===
 DOMAIN-SUFFIX,lanmao23.top
 DOMAIN-SUFFIX,darkvpn.cc
 DOMAIN-SUFFIX,xl-fn.site
+DOMAIN-SUFFIX,vps000.org
+
+# === 国际商业 VPN 官网 ===
+DOMAIN-SUFFIX,expressvpn.com
+DOMAIN-SUFFIX,nordvpn.com
+DOMAIN-SUFFIX,surfshark.com
+DOMAIN-SUFFIX,protonvpn.com
+DOMAIN-SUFFIX,astrill.com
+DOMAIN-SUFFIX,astrill-mirror.com
+DOMAIN-SUFFIX,mullvad.net
+DOMAIN-SUFFIX,cyberghostvpn.com
+DOMAIN-SUFFIX,privateinternetaccess.com
+DOMAIN-SUFFIX,windscribe.com
+DOMAIN-SUFFIX,ipvanish.com
+DOMAIN-SUFFIX,hotspotshield.com
+DOMAIN-SUFFIX,tunnelbear.com
+DOMAIN-SUFFIX,vyprvpn.com
+DOMAIN-SUFFIX,purevpn.com
+DOMAIN-SUFFIX,hidemyass.com
+DOMAIN-SUFFIX,ivpn.net
+DOMAIN-SUFFIX,adguard-vpn.com
+DOMAIN-SUFFIX,letsvpn.world
+DOMAIN-SUFFIX,letsvpn.cc
+DOMAIN-SUFFIX,letsvpn.us
+
+# === 常见机场官网 / 备用入口 / 发布页 ===
+# WgetCloud
+DOMAIN-SUFFIX,wgetcloud.ltd
+DOMAIN-SUFFIX,wgetcloud.org
+DOMAIN-SUFFIX,wget.co
+
+# Nexitally (奶昔)
+DOMAIN-SUFFIX,nexitally.world
+DOMAIN-SUFFIX,nxonearth.com
+DOMAIN-SUFFIX,nexitaly.homes
+DOMAIN-SUFFIX,nextially.mom
+
+# TagInternet (TAG VPN)
+DOMAIN-SUFFIX,tagss11.com
+DOMAIN-SUFFIX,tagss4.com
+DOMAIN-SUFFIX,tagweb.vip
+DOMAIN-SUFFIX,tagxx.vip
+DOMAIN-SUFFIX,tageducational.com
+
+# 魔戒 (Mojie)
+DOMAIN-SUFFIX,mojie.app
+DOMAIN-SUFFIX,mojie.co
+DOMAIN-SUFFIX,mojie.host
+
+# 一元机场
+DOMAIN-SUFFIX,xn--4gq62f52gdss.asia
+
+# 肥猫云 (FatCat Cloud)
+DOMAIN-SUFFIX,fatcatcloud.org
+DOMAIN-SUFFIX,fatcatcloud.dev
+
+# 尔湾云 (Erwan Cloud)
+DOMAIN-SUFFIX,erwan8.net
+DOMAIN-SUFFIX,erwan.cfd
+DOMAIN-SUFFIX,erwan.lol
+
+# 狗狗加速
+DOMAIN-SUFFIX,dg1.top
+DOMAIN-SUFFIX,gougoujsvpn.mom
+
+# 飞鸟云 (FlyingBird)
+DOMAIN-SUFFIX,feiniaocloud.com
+DOMAIN-SUFFIX,feiniaoyun.xyz
+DOMAIN-SUFFIX,flyingbird.cc
+
+# 优云666
+DOMAIN-SUFFIX,youyun666.com
+
+# 闪狐云 (FlashFox)
+DOMAIN-SUFFIX,flashfox.org
+DOMAIN-SUFFIX,shanhuyun.info
+
+# 蓝帆云
+DOMAIN-SUFFIX,lanfancloudjic.homes
+
+# 泡泡狗 (Paopao Dog)
+DOMAIN-SUFFIX,paopaodog.app
+DOMAIN-SUFFIX,paopao.dog
+DOMAIN-SUFFIX,ppgfabu.com
+
+# 老猫云
+DOMAIN-SUFFIX,laomao.us
+
+# 龙猫云 (TotoroCloud)
+DOMAIN-SUFFIX,totorocloud.org
+DOMAIN-SUFFIX,lmvipaffm01.cc
+DOMAIN-SUFFIX,lmvipaffm02.cc
+
+# 咕嘎云 (原奈云)
+DOMAIN-SUFFIX,gugacloud.cc
+
+# 橘子云 (JuziCloud)
+DOMAIN-SUFFIX,juzi996.com
+DOMAIN-SUFFIX,juzi996.vip
+
+# 精灵学院 (Riolu)
+DOMAIN-SUFFIX,riolu.work
+DOMAIN-SUFFIX,riolu-node.link
+DOMAIN-SUFFIX,riolu00.link
+
+# === 常见机场导航 / 测速评测站（如仅需纯机场可删除此段） ===
+DOMAIN-SUFFIX,wallmama.com
+DOMAIN-SUFFIX,runtushare.net
+DOMAIN-SUFFIX,limbopro.com
+DOMAIN-SUFFIX,jichangfenxiang.com
+DOMAIN-SUFFIX,jichangtuijian1.com
+DOMAIN-SUFFIX,jichangtui.com
+DOMAIN-SUFFIX,jichangzhu.org
+DOMAIN-SUFFIX,tuijianvpn.com
+DOMAIN-SUFFIX,aijichang.com
+DOMAIN-SUFFIX,guatizi.com
+DOMAIN-SUFFIX,gptvpnhelper.com
+DOMAIN-SUFFIX,shadowrocket.one
